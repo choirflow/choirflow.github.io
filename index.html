@@ -31,7 +31,7 @@
               In submission
             </div>
             <div class="author-list">
-              <span class="author"><a href="https://achaitanya.web.illinois.edu/" target="_blank" rel="noopener">Chaitanya Amballa</a><sup>1</sup></span><span class="author">Ayush Barik<sup>1</sup></span><span class="author">Haoxiang Lin<sup>1</sup></span><span class="author">Jim Sun<sup>2</sup></span><span class="author">Mehmet Ergezer<sup>2</sup></span><span class="author">Vamshi Krishna Chillara<sup>2</sup></span><span class="author">Wontak Kim<sup>2</sup></span><span class="author"><a href="https://croy.web.engr.illinois.edu/" target="_blank" rel="noopener">Romit Roy Choudhury</a><sup>1,2</sup></span>
+              <span class="author"><a href="https://achaitanya.web.illinois.edu/" target="_blank" rel="noopener">Chaitanya Amballa</a><sup>1</sup></span><span class="author">Ayush Barik<sup>1</sup></span><span class="author">Haoxiang Lin<sup>1</sup></span><span class="author">Zhen Sun<sup>2</sup></span><span class="author">Mehmet Ergezer<sup>2</sup></span><span class="author">Vamshi Krishna Chillara<sup>2</sup></span><span class="author">Wontak Kim<sup>2</sup></span><span class="author"><a href="https://croy.web.engr.illinois.edu/" target="_blank" rel="noopener">Romit Roy Choudhury</a><sup>1,2</sup></span>
             </div>
             <div class="affiliations">
               <sup>1</sup> University of Illinois Urbana-Champaign &nbsp;&nbsp; <sup>2</sup> Amazon
@@ -47,19 +47,15 @@
       <section class="section">
         <div class="container">
           <h2 class="title">Abstract</h2>
-          <p>Room impulse responses (RIRs) describe how sound propagates between a
-source and a listener, and underlie applications ranging from immersive audio to
-far-field speech recognition. RIRs are typically obtained from hybrid acoustic
-simulators, which combine wave solvers with geometric methods; this is accurate but
-slow and computationally demanding. We show that generative models can take the place
-of such a simulator: given only a mesh of the room and the source and listener
-positions, our method <strong>CHOIR</strong> produces a high-fidelity RIR in a single
-network evaluation. To reduce ambiguity, a few RIRs measured at different locations in
-the same room are also provided as additional inputs. CHOIR is trained across many
-rooms via flow matching, and on AcousticRooms it improves reverberation time, clarity,
-and early-decay time over prior methods in both seen and unseen rooms. We also show
-results on sim2real transfer to real rooms, and on a downstream speech recognition
-task, where CHOIR stays closest to the ground truth.</p>
+          <p>Room impulse responses (RIRs) describe how sound propagates between a source and
+            a listener, and underlie applications ranging from immersive audio to speech enhancement and recognition. 
+            RIRs are typically obtained from hybrid acoustic simulators,
+            which combine wave solvers with geometric methods; this is accurate but slow and computationally demanding. 
+            We show that generative models can take the place of such a simulator: given a mesh of the room and the source and listener positions, our method CHOIR produces a high-fidelity RIR in a single network evaluation.
+            To reduce ambiguity in this ill-posed problem, a few RIRs measured at different locations in the same room are provided as additional inputs.
+            CHOIR is trained across many rooms via flow matching, and on AcousticRooms it improves reverberation time, clarity, and early-decay time over prior methods in both seen and unseen rooms.
+            We also show results on sim2real transfer to real rooms, and on a downstream speech recognition task, where speech rendered with CHOIR's RIRs gives error rates closest to those obtained with the ground-truth RIRs.
+          </p>
         </div>
       </section>
       <!-- ==================== surrogate simulators ======================== -->
@@ -136,7 +132,7 @@ task, where CHOIR stays closest to the ground truth.</p>
     </p>
           <figure>
             <img src="./static/images/main-fig.png" alt="overview of CHOIR">
-            <figcaption>Overview of CHOIR. On the left is training: an RIR is encoded by the frozen
+            <figcaption><strong>Overview of CHOIR.</strong> On the left is training: an RIR is encoded by the frozen
         \(\mathcal{E}\) and interpolated with noise to give \(z_t\), from which \(u_\theta\)
         regresses the velocity under the context \(c\). At inference (right), two contexts, in red
         and blue, carry noise along different trajectories, each decoded into a RIR by
@@ -229,12 +225,12 @@ task, where CHOIR stays closest to the ground truth.</p>
                 </tr>
                 <tr class="stage2">
                   <td class="vr"><b>CHOIR (ours)</b></td>
-                  <td><b>7.78</b></td>
-                  <td><b>0.88</b></td>
-                  <td class="vr-major"><b>33.97</b></td>
-                  <td><b>5.26</b></td>
-                  <td><b>0.60</b></td>
-                  <td><b>24.73</b></td>
+                  <td><u>7.78</u></td>
+                  <td><u>0.88</u></td>
+                  <td class="vr-major"><u>33.97</u></td>
+                  <td><u>5.26</u></td>
+                  <td><u>0.60</u></td>
+                  <td><u>24.73</u></td>
                 </tr>
                 <tr class="stage2">
                   <td class="vr"><b>CHOIR<sub>ETC</sub> (ours)</b></td>
@@ -248,7 +244,7 @@ task, where CHOIR stays closest to the ground truth.</p>
               </tbody>
             </table>
           </div>
-          <p class="tbl-caption"><strong>Reconstruction and generation results on AcousticRooms.</strong> The upper block is stage 1, the reconstruction error of the frozen autoencoder; the lower block is stage 2, generation with K = 8 reference RIRs. <b>Bold</b> indicates best.</p>
+          <p class="tbl-caption"><strong>Reconstruction and generation results</strong> on AcousticRooms. The upper block is stage 1, the reconstruction error of the frozen autoencoder; the lower block is stage 2, generation with K = 8 reference RIRs. <b>Bold</b>&nbsp;indicates best, and <u>underline</u>, second&nbsp;best.</p>
           <h3 class="subhead">Real-world rooms</h3>
           <p>
       We fine-tune both FLAC and CHOIR on Hearing Anything Anywhere, four measured rooms. The setup
@@ -260,7 +256,7 @@ task, where CHOIR stays closest to the ground truth.</p>
     </p>
           <figure>
             <img src="./static/images/haa_ramp.png" alt="adaptation on real rooms">
-            <figcaption>Performance on real-world rooms. CHOIR outperforms baselines and generalizes well
+            <figcaption><strong>Performance on real-world rooms.</strong> CHOIR outperforms baselines and generalizes well
         with increasing budgets.</figcaption>
           </figure>
           <h3 class="subhead">Speech recognition</h3>
@@ -492,8 +488,8 @@ task, where CHOIR stays closest to the ground truth.</p>
               </tbody>
             </table>
           </div>
-          <p class="tbl-caption"><strong>Word error rate (%) under pink and babble noise at varying SNR
-      levels.</strong> <b>Bold</b> indicates closest to the ground truth.</p>
+          <p class="tbl-caption"><strong>Word error rate</strong> (%) under pink and babble noise at varying SNR
+      levels. <b>Bold</b>&nbsp;indicates closest to the ground&nbsp;truth.</p>
         </div>
       </section>
       <!-- ======================= qualitative results ====================== -->
